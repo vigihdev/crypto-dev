@@ -8,7 +8,9 @@
 
 # exclude File Dot
 .DS_Store
+/.env
 
 # exclude directory
+/amazonq
 /vendor
 /config
