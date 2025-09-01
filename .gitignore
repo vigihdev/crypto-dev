@@ -11,6 +11,6 @@
 /.env
 
 # exclude directory
-/amazonq
+/.amazonq
 /vendor
 /config
