@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vigihdev\CryptoDev;
 
+use Defuse\Crypto\Crypto;
 use Exception;
 use RuntimeException;
 
@@ -16,6 +17,18 @@ use RuntimeException;
  */
 final class CryptoOpenssl
 {
+
+
+    public static function encryptFromArray(array $data, string $keyFile)
+    {
+        // use Defuse\Crypto\CryptoDefuse;
+
+        foreach ($data as $key => $value) {
+        }
+    }
+
+    public static function encryptEnv(string $plaintext, string $key) {}
+    public static function encrypt(string $plaintext, string $key) {}
 
     /**
      * Decrypt encrypted data using AES-256-CBC

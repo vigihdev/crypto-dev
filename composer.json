@@ -14,7 +14,8 @@
         }
     ],
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "defuse/php-encryption": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -29,6 +30,9 @@
     "config": {
         "process-timeout": 0
     },
+    "bin": [
+        "bin/crypto-dev"
+    ],
     "scripts": {
         "generate:key": "Vigihdev\\CryptoDev\\Generator::cliKey",
         "generate:env": "Vigihdev\\CryptoDev\\Generator::cliEnv",
