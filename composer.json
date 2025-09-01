@@ -18,9 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Vigihdev\\CryptoDev\\": "src/",
-            "App\\Security\\": "src/Security/",
-            "App\\Config\\": "src/Config/"
+            "Vigihdev\\CryptoDev\\": "src/"
         }
     },
     "autoload-dev": {
