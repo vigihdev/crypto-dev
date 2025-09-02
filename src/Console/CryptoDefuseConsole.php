@@ -11,10 +11,24 @@ use Vigihdev\CryptoDev\CryptoDefuse;
 use Vigihdev\CryptoDev\Exception\FileDirectoryException;
 use Vigihdev\CryptoDev\Exception\KeyFileException;
 
-
+/**
+ * CryptoDefuseConsole
+ *
+ * Console handler untuk Defuse crypto operations
+ *
+ * @author Vigih Dev
+ */
 final class CryptoDefuseConsole extends AbstractConsole
 {
-
+    /**
+     * Generate Defuse encryption key
+     *
+     * Generates random key menggunakan Defuse library dan simpan ke secrets directory
+     *
+     * @return void
+     * @throws FileDirectoryException
+     * @throws KeyFileException
+     */
     public static function generateKey(): void
     {
 
@@ -36,6 +50,14 @@ final class CryptoDefuseConsole extends AbstractConsole
         }
     }
 
+    /**
+     * Write encrypted environment variables
+     *
+     * Encrypt environment variables menggunakan Defuse crypto dan update .env file
+     *
+     * @return void
+     * @throws FileDirectoryException
+     */
     public static function writeEnvEncrypt(): void
     {
 
@@ -83,6 +105,15 @@ final class CryptoDefuseConsole extends AbstractConsole
         printf("Env berhasil di Update %s \n", "");
     }
 
+    /**
+     * Test decryption functionality
+     *
+     * Decrypt encrypted string menggunakan Defuse key
+     *
+     * @return void
+     * @throws FileDirectoryException
+     * @throws InvalidArgumentException
+     */
     public static function testDecrypt(): void
     {
         $self = new self();
@@ -102,6 +133,11 @@ final class CryptoDefuseConsole extends AbstractConsole
         echo CryptoDefuse::decrypt($arg, $key) . PHP_EOL;
     }
 
+    /**
+     * Constructor
+     *
+     * Initialize CryptoDefuseConsole dengan current working directory
+     */
     public function __construct()
     {
         parent::__construct(

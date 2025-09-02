@@ -17,6 +17,9 @@
         "php": "^8.0",
         "defuse/php-encryption": "^2.4"
     },
+    "require-dev": {
+        "phpunit/phpunit": "10.5.x-dev"
+    },
     "autoload": {
         "psr-4": {
             "Vigihdev\\CryptoDev\\": "src/"
@@ -37,6 +40,8 @@
         "openssl:generate:key": "Vigihdev\\CryptoDev\\Console\\CryptoOpensslConsole::generateKey",
         "openssl:write:env": "Vigihdev\\CryptoDev\\Console\\CryptoOpensslConsole::writeEnvEncrypt",
         "openssl:test": "Vigihdev\\CryptoDev\\Console\\CryptoOpensslConsole::testDecrypt",
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage",
         "server": "php -S localhost:3922 server.php"
     }
 }

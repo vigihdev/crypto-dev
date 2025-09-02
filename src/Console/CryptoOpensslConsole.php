@@ -8,10 +8,23 @@ use InvalidArgumentException;
 use Vigihdev\CryptoDev\CryptoOpenssl;
 use Vigihdev\CryptoDev\Exception\FileDirectoryException;
 
-
+/**
+ * CryptoOpensslConsole
+ *
+ * Console handler untuk OpenSSL crypto operations
+ *
+ * @author Vigih Dev
+ */
 final class CryptoOpensslConsole extends AbstractConsole
 {
-
+    /**
+     * Generate OpenSSL encryption key
+     *
+     * Generates 32-byte random key dan simpan ke secrets directory
+     *
+     * @return void
+     * @throws FileDirectoryException
+     */
     public static function generateKey(): void
     {
 
@@ -33,6 +46,14 @@ final class CryptoOpensslConsole extends AbstractConsole
         }
     }
 
+    /**
+     * Write encrypted environment variables
+     *
+     * Encrypt environment variables menggunakan OpenSSL dan update .env file
+     *
+     * @return void
+     * @throws FileDirectoryException
+     */
     public static function writeEnvEncrypt(): void
     {
 
@@ -84,7 +105,15 @@ final class CryptoOpensslConsole extends AbstractConsole
         printf("Env berhasil di Update %s \n", "");
     }
 
-
+    /**
+     * Test decryption functionality
+     *
+     * Decrypt encrypted string menggunakan OpenSSL key
+     *
+     * @return void
+     * @throws FileDirectoryException
+     * @throws InvalidArgumentException
+     */
     public static function testDecrypt(): void
     {
         $self = new self();
@@ -104,7 +133,11 @@ final class CryptoOpensslConsole extends AbstractConsole
         echo CryptoOpenssl::decrypt($arg, $key) . PHP_EOL;
     }
 
-
+    /**
+     * Constructor
+     *
+     * Initialize CryptoOpensslConsole dengan current working directory
+     */
     public function __construct()
     {
         parent::__construct(

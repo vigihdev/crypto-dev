@@ -12,5 +12,7 @@
 
 # exclude directory
 /.amazonq
+/bin
 /vendor
+/coverage
 /config

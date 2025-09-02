@@ -5,17 +5,33 @@ declare(strict_types=1);
 namespace Vigihdev\CryptoDev\Console;
 
 /**
- * Generator
+ * AbstractConsole
  *
- * Handles cryptographic key generation and environment variable encryption
+ * Base abstract class untuk console operations crypto development
  *
  * @author Vigih Dev
  */
 abstract class AbstractConsole
 {
-
+    /**
+     * Generate encryption key
+     *
+     * @return void
+     */
     abstract public static function generateKey(): void;
+
+    /**
+     * Write encrypted environment variables
+     *
+     * @return void
+     */
     abstract public static function writeEnvEncrypt(): void;
+
+    /**
+     * Test decryption functionality
+     *
+     * @return void
+     */
     abstract public static function testDecrypt(): void;
 
 
