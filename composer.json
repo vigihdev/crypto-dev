@@ -30,9 +30,6 @@
     "config": {
         "process-timeout": 0
     },
-    "bin": [
-        "bin/crypto-dev"
-    ],
     "scripts": {
         "defuse:generate:key": "Vigihdev\\CryptoDev\\Console\\CryptoDefuseConsole::generateKey",
         "defuse:write:env": "Vigihdev\\CryptoDev\\Console\\CryptoDefuseConsole::writeEnvEncrypt",
