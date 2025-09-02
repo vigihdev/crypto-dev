@@ -34,8 +34,12 @@
         "bin/crypto-dev"
     ],
     "scripts": {
-        "generate:key": "Vigihdev\\CryptoDev\\Generator::cliKey",
-        "generate:env": "Vigihdev\\CryptoDev\\Generator::cliEnv",
+        "defuse:generate:key": "Vigihdev\\CryptoDev\\Console\\CryptoDefuseConsole::generateKey",
+        "defuse:write:env": "Vigihdev\\CryptoDev\\Console\\CryptoDefuseConsole::writeEnvEncrypt",
+        "defuse:test": "Vigihdev\\CryptoDev\\Console\\CryptoDefuseConsole::testDecrypt",
+        "openssl:generate:key": "Vigihdev\\CryptoDev\\Console\\CryptoOpensslConsole::generateKey",
+        "openssl:write:env": "Vigihdev\\CryptoDev\\Console\\CryptoOpensslConsole::writeEnvEncrypt",
+        "openssl:test": "Vigihdev\\CryptoDev\\Console\\CryptoOpensslConsole::testDecrypt",
         "server": "php -S localhost:3922 server.php"
     }
 }

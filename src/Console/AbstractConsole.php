@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vigihdev\CryptoDev;
+namespace Vigihdev\CryptoDev\Console;
 
 /**
  * Generator
@@ -11,90 +11,13 @@ namespace Vigihdev\CryptoDev;
  *
  * @author Vigih Dev
  */
-final class Generator
+abstract class AbstractConsole
 {
 
-    /**
-     * Generate cryptographic key via CLI
-     *
-     * Creates a 32-byte random key and saves it to secrets directory
-     *
-     * @return void
-     */
-    public static function cliKey(): void
-    {
+    abstract public static function generateKey(): void;
+    abstract public static function writeEnvEncrypt(): void;
+    abstract public static function testDecrypt(): void;
 
-        $self = new self(getcwd());
-
-        // CryptoOpenssl
-        // Generate kunci 32 byte random
-        $key = openssl_random_pseudo_bytes(32);
-        $fileKey = $self->getPathSecrets() . DIRECTORY_SEPARATOR . '.key';
-
-        // Simpan ke file (format HEX)
-        if (file_put_contents($fileKey, bin2hex($key))) {
-            chmod($fileKey, 0600);
-            echo "🔑 Kunci berhasil disimpan di: " . $fileKey . PHP_EOL;
-        } else {
-            echo "🔑 Kunci gagal disimpan di: " . $fileKey . PHP_EOL;
-        }
-    }
-
-    /**
-     * Encrypt environment variables via CLI
-     *
-     * Encrypts command line arguments and updates .env file with encrypted values
-     *
-     * @return void
-     */
-    public static function cliEnv(): void
-    {
-
-        $self = new self(getcwd());
-        $key = $self->getPathSecrets() . DIRECTORY_SEPARATOR . '.key';
-
-        if (!is_file($key)) {
-            return;
-        }
-
-        $keyHex = file_get_contents($key);
-        $fileEnv = $self->getFileEnv();
-
-        $envArgs = [];
-        array_map(function ($arg) use ($keyHex, &$envArgs) {
-            $arg = preg_replace('/^--/', '', $arg);
-            $envs = explode('=', $arg, 2);
-            $key = $envs[0] ?? null;
-            $value = $envs[1] ?? null;
-
-            // openssl_encrypt
-            $keySsl = hex2bin($keyHex);
-            $iv = openssl_random_pseudo_bytes(16);
-            $encrypted = openssl_encrypt($value, 'AES-256-CBC', $keySsl, 0, $iv);
-            $encrypted = base64_encode($iv . $encrypted);
-
-            $envArgs[$key] = $encrypted;
-        }, $self->getArgs());
-
-
-        // Filters
-        $envLoaders = array_filter($self->readFileEnv(), function ($key) use ($envArgs) {
-            $envArgsKeys = array_keys($envArgs);
-            return !in_array($key, $envArgsKeys);
-        }, ARRAY_FILTER_USE_KEY);
-
-
-        // Merge
-        $envLoaders = array_merge($envLoaders, $envArgs);
-
-        // Save env
-        $content = array_map(fn($value, $key) => "{$key}={$value}", $envLoaders, array_keys($envLoaders));
-        $content = implode(PHP_EOL, $content);
-        file_put_contents($fileEnv, $content);
-
-        // Message
-        printf("Env berhasil di Update %s \n", "");
-    }
 
     /**
      * Constructor
